@@ -25,7 +25,7 @@ The tool reading the introspection, such as  GraphiQL, is not impacted by additi
 After cloning, pull dependencies with
 
 ```bash
-npm i
+pnpm i
 ```
 
 and then for running
