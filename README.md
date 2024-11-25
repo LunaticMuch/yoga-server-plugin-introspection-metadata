@@ -4,28 +4,28 @@ This plugin is a simple adaptation of [apollo-server-plugin-introspection-metada
 
 ## Rationale
 
-Most (if not all) business environments require different level of data governance on APIs. Data governance, which is broad topic,  Here, metadata comes into picture. The API normally carries the data, the structure or data and a simple human description. GraphQL does this already within the SDL. However, it does not rule for metadata.
+Most (if not all) business environments require different levels of data governance on APIs. Data governance is a broad topic. Here, metadata comes into picture. The API normally carries the data, the structure or data and a simple human description. GraphQL does this already within the SDL. However, it does not rule for metadata.
 
-Directive are too often described a possible solution, however they open to more problems rather than benefits. First, directives are defined as
+Directive are too often described as a possible solution, however they open more problems rather than benefits. First, directives are defined as:
 
 > Directives provide a way to describe alternate runtime execution and type validation behavior in a GraphQL document.
 
-Thus they do not really qualify for the roel. Second, when introspecting the schema, the library, it is not possible to see where a directive is applied and with which parameters. This is for security reason. Also, a schema containg too many directive per field could quickly become difficult read, thus impacting the developer experience. Nonetheless, metadata are normally managed by everybody but not engineers. Having metadata closely coupled with the schema would possibly make worse the experience of those creating the schema.
+Thus, they do not really qualify for the role. Second, when introspecting the schema, the library, it is not possible to see where a directive is applied and with which parameters. This is for security reasons. Also, a schema containing too many directives per field could quickly become difficult to read, thus impacting the developer experience. Nonetheless, metadata are normally managed by everybody, not just engineers. Having metadata closely coupled with the schema would possibly make worse the experience of those creating the schema.
 
-GraphQL community has discussed a lot about this but did not end with a decision whether to cater for metadata in the schema or leave it completely outside cit.
+GraphQL community has discussed a lot about this but did not end with a decision whether to cater for metadata in the schema or leave it completely outside it.
 <https://github.com/graphql/graphql-wg/discussions/1096>
 
-## How it work
+## How it works
 
 The plugin allows to define some metadata and add them to the output of a GraphQL introspection query. Because the output is added, by default, using the `onResultProcess` hook, the introspection query does not need to know the position or the format of metadata. Only the returned payload is transformed.
-The tool reading the introspection, such as  graphiQL, is not impacted by additional data. In this example you can see that the section docs (the documentation created using the introspection) is not impacted by the additional  property being added to the introspection object.
+The tool reading the introspection, such as  GraphiQL, is not impacted by additional data. In this example you can see that the section docs (the documentation created using the introspection) is not impacted by the additional property being added to the introspection object.
 
 ## How to run it
 
 After cloning, pull dependencies with
 
 ```bash
-pnpm i
+npm i
 ```
 
 and then for running
@@ -42,7 +42,7 @@ To support a client control for metadata, it would be worth considering the usag
 directive @includeMetadata on QUERY
 ```
 
-This way the client could decide whether read metadata or not. Also, considering metadata residing not in a file but in a 3rd system, this could allow the client to take a choice whether accept more latency for pulling metadata. It simplies open a range of possible solutions/optimizations.
+This way the client could decide whether read metadata or not. Also, considering metadata residing not in a file but in a 3rd system, this could allow the client to take a choice whether to accept more latency for pulling metadata. It simplifies an open a range of possible solutions/optimizations.
 
 ## Limits
 
